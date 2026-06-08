@@ -1,0 +1,26 @@
+name: Run AVISPA
+
+on:
+  push:
+    paths:
+      - 'bpcs_simulation/**'
+  workflow_dispatch: {}
+
+jobs:
+  avispa:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Run AVISPA (Docker)
+        run: |
+          set -e
+          echo "Running AVISPA on bpcs_simulation/bpcs.hlpsl"
+          docker run --rm -v "${{ github.workspace }}":/data avispa/avispa bash -lc "hlpsl2if /data/bpcs_simulation/bpcs.hlpsl && ifv /data/bpcs.if 2>&1 | tee avispa-output.txt"
+
+      - name: Upload AVISPA output
+        uses: actions/upload-artifact@v4
+        with:
+          name: avispa-output
+          path: avispa-output.txt

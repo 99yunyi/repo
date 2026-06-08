@@ -1,0 +1,47 @@
+/*
+  bpcs.hlpsl - simplified HLPSL for BPCS
+  Roles:
+    - Node: creates a blob-field (bf) and never reveals its private key `sk`.
+    - Enterprise: receives bf and publishes it.
+
+  This is a minimal, high-level encoding intended as a starting point for AVISPA.
+  It models `bf` as a fresh value created by Node and sent to Enterprise.
+  Goals: secrecy of `sk` (modeled as local, never sent) and authentication that
+  a `publish` (Enterprise end) corresponds to a Node `create` (begin).
+*/
+
+role Node(N, E: agent)
+played_by N
+def=
+  local
+    sk, report, bf: text
+  init
+    sk := new()
+    report := new()
+    bf := new()
+  transition
+    1. N -> E: bf
+    2. claim_1: secret(sk)
+    3. claim_2: begin(bf)
+end role
+
+role Enterprise(E, N: agent)
+played_by E
+def=
+  local
+    bf: text
+  transition
+    1. N -> E: bf
+    2. claim_1: end(bf)
+end role
+
+session
+  bpcs(N, E: agent) = Node(N, E) || Enterprise(E, N)
+end session
+
+environment
+  const N, E: agent
+  intruder_knowledge = {}
+  composition
+    bpcs(N, E)
+end environment
