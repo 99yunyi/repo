@@ -2,8 +2,8 @@ name: Run AVISPA
 
 on:
   push:
-    paths:
-      - 'bpcs_simulation/**'
+    branches:
+      - main
   workflow_dispatch: {}
 
 jobs:
