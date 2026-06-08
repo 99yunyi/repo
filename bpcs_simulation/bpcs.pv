@@ -5,6 +5,7 @@ free c: channel.
 fun pk/1.
 fun sign/2.
 fun h/1.
+fun verify/2.
 
 reduc verify(pk(sk), sign(sk, m)) = m.
 
