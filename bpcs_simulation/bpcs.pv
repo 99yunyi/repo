@@ -14,10 +14,7 @@ reduc verify(pk(sk), sign(sk, m)) = m.
 event create_bf(bitstring).
 event publish_bf(bitstring).
 
-process
-  !
-    new sk: bitstring;
-    let pk_i = pk(sk) in
+process ! new sk: bitstring;
     new report: bitstring;
     let sig = sign(sk, report) in
     let bf = sig in
@@ -25,8 +22,7 @@ process
     event create_bf(bf);
     (* Enterprise computes hash and publishes; we record bf in publish event *)
     event publish_bf(bf);
-    out(c, h(bf))
-  .
+    out(c, h(bf)).
 
 (* Security queries *)
 query event(publish_bf(bf)) ==> event(create_bf(bf)).
