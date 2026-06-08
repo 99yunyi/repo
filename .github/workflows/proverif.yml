@@ -4,6 +4,7 @@ on:
   push:
     paths:
       - 'bpcs_simulation/**'
+      - '.github/workflows/proverif.yml'
   workflow_dispatch: {}
 
 jobs:
