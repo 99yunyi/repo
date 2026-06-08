@@ -17,7 +17,7 @@ jobs:
         run: |
           set -e
           echo "Running ProVerif on bpcs_simulation/bpcs.pv"
-          docker run --rm -v "${{ github.workspace }}":/data proverif/proverif proverif /data/bpcs_simulation/bpcs.pv 2>&1 | tee proverif-output.txt
+          docker run --rm -v "${{ github.workspace }}":/data koenyskout/proverif:default proverif /data/bpcs_simulation/bpcs.pv 2>&1 | tee proverif-output.txt
 
       - name: Upload ProVerif output
         uses: actions/upload-artifact@v4
