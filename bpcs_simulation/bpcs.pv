@@ -22,7 +22,7 @@ process ! new sk: bitstring;
     event create_bf(bf);
     (* Enterprise computes hash and publishes; we record bf in publish event *)
     event publish_bf(bf);
-    out(c, h(bf)); 0
+    out(c, h(bf)); 0.
 
 (* Security queries *)
 query event(publish_bf(bf)) ==> event(create_bf(bf)).
