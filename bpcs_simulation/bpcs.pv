@@ -2,10 +2,11 @@
 
 free c: channel.
 
-fun pk/1.
-fun sign/2.
-fun h/1.
-fun verify/2.
+type bitstring.
+fun pk(bitstring): bitstring.
+fun sign(bitstring, bitstring): bitstring.
+fun h(bitstring): bitstring.
+fun verify(bitstring, bitstring): bitstring.
 
 reduc verify(pk(sk), sign(sk, m)) = m.
 
