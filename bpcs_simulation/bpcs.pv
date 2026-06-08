@@ -1,0 +1,31 @@
+(* Simplified ProVerif model for BPCS Recording Phase *)
+
+free c: channel.
+
+fun pk/1.
+fun sign/2.
+fun h/1.
+
+reduc verify(pk(sk), sign(sk, m)) = m.
+
+(* Events to state correspondences *)
+event create_bf(bitstring).
+event publish_bf(bitstring).
+
+process
+  (!
+    new sk: bitstring;
+    let pk_i = pk(sk) in
+    new report: bitstring;
+    let sig = sign(sk, report) in
+    let bf = sig in
+    (* Node creates bf (here simplified as single-sig bf) *)
+    event create_bf(bf);
+    (* Enterprise computes hash and publishes; we record bf in publish event *)
+    event publish_bf(bf);
+    out(c, h(bf))
+  )
+
+(* Security queries *)
+query event(publish_bf(bf)) ==> event(create_bf(bf)).
+query attacker: sk.

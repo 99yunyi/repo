@@ -1,0 +1,2 @@
+timestamp,ecdsa_available,ecdsa_avg_sig_time_s,ecdsa_sig_size_bytes,pqc_available,pqc_avg_sig_time_s,pqc_sig_size_bytes,num_batches,batch_size,total_items,raw_data_bytes,metadata_bytes,signature_size_bytes,total_sig_bytes,total_storage_bytes,estimated_signing_time_s
+2026-06-08T16:48:39.333123,True,0.0008511880040168763,71,False,0.002,1500,10,500,5000,1280000,1280,71,355000,1636280,4.255940020084381

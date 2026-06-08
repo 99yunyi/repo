@@ -1,0 +1,17 @@
+                                   ECDSA (no batch)  ECDSA+Batch  SLH-DSA+Batch ML-DSA-44+Batch
+Metric                                                                                         
+Public Key Size                            33 bytes     33 bytes       32 bytes      1312 bytes
+Private Key Size                           32 bytes     32 bytes       64 bytes      2560 bytes
+Signature Size                             71 bytes     71 bytes     7856 bytes      2420 bytes
+Daily Uploads (per node)                       5000           50             50              50
+On-chain Per Upload                       103 bytes    112 bytes      112 bytes       112 bytes
+Daily On-chain (per node)                 502.93 KB      5.47 KB        5.47 KB         5.47 KB
+Monthly On-chain (100 nodes)              1473.4 MB      16.0 MB        16.0 MB         16.0 MB
+Daily Off-chain (per Enterprise)        15000.00 KB  15346.68 KB    53359.38 KB     26816.41 KB
+Monthly Off-chain (per Enterprise)         439.5 MB     449.6 MB      1563.3 MB        785.6 MB
+KeyGen Time                                0.655 ms     0.655 ms     100.000 ms        5.000 ms
+Signing Time (per operation)               0.667 ms     0.667 ms       5.000 ms        1.000 ms
+Verification Time (per signature)          0.580 ms     0.580 ms       2.000 ms        0.500 ms
+Aggregate Daily Verification Time       2897.728 ms    28.977 ms     100.000 ms       25.000 ms
+Post-Quantum Security                             ✗            ✗   ✓ (FIPS 205)    ✓ (FIPS 204)
+Security Assumption                           ECDLP        ECDLP  Hash col.res.  MLWE (lattice)

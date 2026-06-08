@@ -1,0 +1,26 @@
+name: Run ProVerif
+
+on:
+  push:
+    paths:
+      - 'bpcs_simulation/**'
+  workflow_dispatch: {}
+
+jobs:
+  proverif:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Run ProVerif (Docker)
+        run: |
+          set -e
+          echo "Running ProVerif on bpcs_simulation/bpcs.pv"
+          docker run --rm -v "${{ github.workspace }}":/data proverif/proverif proverif /data/bpcs_simulation/bpcs.pv 2>&1 | tee proverif-output.txt
+
+      - name: Upload ProVerif output
+        uses: actions/upload-artifact@v4
+        with:
+          name: proverif-output
+          path: proverif-output.txt

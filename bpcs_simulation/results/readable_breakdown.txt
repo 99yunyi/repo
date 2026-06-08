@@ -1,0 +1,4 @@
+raw: 1.22 MB
+metadata: 1.25 KB
+signatures: 346.68 KB
+total: 1.56 MB
